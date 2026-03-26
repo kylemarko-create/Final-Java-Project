@@ -6,9 +6,9 @@ For grading this assignment, please refer to the following files:
 
 2. For the Final Portfolio assignment, please refer to the following files to grade the corrections for prior modules:
      
-     Module 1 Corrections: src/assignmentOneCorrections.java
+     Module 1 Corrections: src/RestaurantScript.java
 
-     Module 3 Corrections: src/assignmentThreeCorrections.java
+     Module 3 Corrections: src/incomeTaxCalc.java
 
      Module 4 Corrections: src/assignmentFourCorrections.java
 
