@@ -10,7 +10,7 @@ For grading this assignment, please refer to the following files:
 
      Module 3 Corrections: src/incomeTaxCalc.java
 
-     Module 4 Corrections: src/assignmentFourCorrections.java
+     Module 4 Corrections: src/Project.java
 
      Module 5 Corrections: src/assignmentFiveCorrections.java
 
