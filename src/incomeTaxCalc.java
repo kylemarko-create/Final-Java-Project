@@ -12,26 +12,32 @@ import java.util.Scanner;
 
 public class incomeTaxCalc {
     public static void main(String[] args) {
+
         Scanner incomeInput = new Scanner(System.in);
         System.out.println("Enter your weekly income");
 
         if (incomeInput.hasNextDouble()) {
-            Double income = incomeInput.nextDouble();
-            Double tax = 0.00;
-            
+
+            double income = incomeInput.nextDouble();
+            double tax = 0.00;
+
+            //Under 500 Income Tax bracket
             if (income <= 500){
                 tax = income * 0.1;
             }
 
+            //Under 1500 Income tax bracket
             else if (income >= 500 && income < 1500){
                 tax = 100 + (income - 500) * 0.15;
             }
 
+            //Under 2500 Income tax bracket
             else if (income >= 1500 && income < 2500){
                 tax = 100 + 150 + (income - 1500) * 0.2;
             }
 
-            if (income >= 2500){
+            //2500+ tax bracket
+            else if (income >= 2500){
                 tax = 100 + 150 + 200 + (income - 2500) * 0.3;
             }
 
@@ -39,7 +45,9 @@ public class incomeTaxCalc {
         }
 
         else {
+
             System.out.println("Invalid Input, please input a number.");
+            
         }
     }
 }
