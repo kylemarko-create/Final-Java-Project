@@ -1,0 +1,115 @@
+Import statements
+
+Main Class {
+
+    //default class of what makes a car
+    Class car {
+        defining all the varibles that will later be used to make a car
+
+
+        public car {
+            Defining varibles for the specific car in question
+        }
+
+        // add a car from console input
+        public static to add a new car {
+            try {
+                Print to user "Make";
+                Collect Input;
+                Do the same for model, year, color, and milage.
+
+                return values form car
+            } catch error {
+                error statement
+            }
+        }
+
+
+        Code to remove car based on mathcing user inputs for removal. {
+            try {
+                for (inventory check) {
+                    match;
+                    if (inputs equal a value matching that in inventory) {
+                        remove matching inventory;
+                        Return successful removal line;
+                    }
+                }
+                return "No matching car found.";
+            } catch error {
+                return error statement;
+            }
+        }
+
+        //list a cars info function
+        list car inventory strings {
+            try {
+                return car data{
+                    Make
+                    Model
+                    Year
+                    Milage
+                };
+            } catch error {
+                return error message;
+            }
+        }
+
+        // list all cars in inventory
+        list all cars function {
+            try {
+                if (inventory is empty) {
+                    return that inventory is empty;
+                }
+                loop through inventory {
+                    Print car number
+                    Call listCar and print each value for each car
+                }
+                return total number of cars in inventory;
+            } catch error {
+                return error message;
+            }
+        }
+    }
+
+    Main program {
+        try {
+            Create scanner for inpput
+            Create empty inventory list
+            boolean true
+
+            Print "Car Dealership Inventory"
+
+            while running {
+                Print menu options:
+                Options 1 to 4 avalible.
+                Collect user choice
+
+                if choice is 1 {
+                    Call addCar function
+                    if car is not null, add to inventory
+                    Print "Car added!"
+                }
+                if choice is 2 {
+                    Prompt user for make, model, color, year
+                    Collect each input
+                    Call removeCar with those inputs
+                    Print result
+                }
+                if choice is 3 {
+                    Call listAll function
+                    Print result
+                }
+                if choice is 4 {
+                    Set running to false
+                    Print "Goodbye!"
+                }
+                otherwise {
+                    Print "Invalid option."
+                }
+            }
+            Close scanner
+        } catch error {
+            Print error message
+        }
+    }
+}

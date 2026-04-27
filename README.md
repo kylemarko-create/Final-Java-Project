@@ -2,7 +2,7 @@
 
 For grading this assignment, please refer to the following files:
 
-1. For the Module 6 check in assignment, please only refer to src/moduleSixCheckIn.java to grade the source code, and src/moduleSixPseudoCode.txt to grade the Pseudo Code. All other files can be ignored for this assignment.
+1. For the Module 6 check in assignment, please only refer to src/App.java to grade the source code, and src/pseudoCode.txt to grade the Pseudo Code. All other files can be ignored for this assignment. I will also be reusing these files for the final assignment.
 
 2. For the Final Portfolio assignment, please refer to the following files to grade the corrections for prior modules:
      
@@ -12,8 +12,8 @@ For grading this assignment, please refer to the following files:
 
      Module 4 Corrections: src/Project.java
 
-     Module 5 Corrections: src/assignmentFiveCorrections.java
+     Module 5 Corrections: src/Main.java
 
-     Module 6 Corrections: For any corrections needed for the final portfolio check in project, please refer to my final portfolio source code, at src/App.java which will include any fixes to the class, if needed.
+     Module 6 Corrections: For any corrections needed for the midway portfolio check in project, please refer to my final portfolio source code, at src/App.java which will include any fixes to the class, if needed.
 
 3. To grade the final Automobile dealership software for the Final Portfolio assignment, please refer to src/App.java and src/pseudoCode.txt

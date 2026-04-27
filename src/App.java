@@ -1,47 +1,148 @@
-// Your Portfolio Project for CSC320 will consist of three components:
-
-// Program corrections: Make the appropriate corrections to all the programming assignments submitted as Critical Thinking assignments from Modules 1-6. You will need to submit the programs along with the carefully outlined corrections needed in order for the programs to run correctly.
-// Lessons learned reflection: Create a 2-3-page summary that outlines the lessons learned in this Programming I course.
-// Final program: Create a final program that meets the requirements outlined below.
-// Final Program Requirements
-// Create an automobile class that will be used by a dealership as a vehicle inventory program. The following attributes should be present in your automobile class:
-
-// private string make
-// private string model
-// private string color
-// private int year
-// private int mileage
-// Your program should have appropriate methods such as:
-
-// default constructor
-// parameterized constructor
-// add a new vehicle  method
-// list vehicle information (return string array)
-// remove a vehicle method
-// update vehicle attributes method
-// All methods should include try..catch constructs. Except as noted all methods should return a success or failure message (failure message defined in "catch").
-
-// Create an additional class to call your automobile class (e.g., Main or AutomobileInventory). Include a try..catch construct and print it to the console.
-// Call automobile class with parameterized constructor (e.g., "make, model, color, year, mileage").
-// Then call the method to list the values. Loop through the array and print to the screen.
-// Call the remove vehicle method to clear the variables.
-// Print the return value.
-// Add a new vehicle.
-// Print the return value.
-// Call the list method and print the new vehicle information to the screen.
-// Update the vehicle.
-// Print the return value.
-// Call the listing method and print the information to the screen.
-// Display a message asking if the user wants to print the information to a file (Y or N).
-// Use a scanner to capture the response. If "Y", print the file to a predefined location (e.g., C:\Temp\Autos.txt). Note: you may want to create a method to print the information in the main class.
-// If "N", indicate that a file will not be printed.
-// Your final program submission materials must include your source code and screenshots of the application executing the application and the results.
-
-// Compile your Module 1-6 programs with corrections, lessons learned reflection, and final program course code and application screenshots into a single document. Submit your completed Portfolio Project by the posted due date.
-
+import java.util.Scanner;
+import java.util.ArrayList;
 
 public class App {
-    public static void main(String[] args) throws Exception {
-        System.out.println("Hello, World!");
+
+    //default class of what makes a car
+    static class Car {
+        //define values
+        private String make;
+        private String model;
+        private String color;
+        private int mileage;
+        private int year;
+
+        public Car(String make, String model, String color, int year, int mileage) {
+            this.make = make;
+            this.model = model;
+            this.color = color;
+            this.year = year;
+            this.mileage = mileage;
+        }
+        // add a car from console input
+        public static Car addCar(Scanner scanner) {
+            try {
+                System.out.print("Make:");
+                String make = scanner.nextLine();
+                System.out.print("Model:");
+                String model = scanner.nextLine();
+                System.out.print("Color:");
+                String color = scanner.nextLine();
+                System.out.print("Year:");
+                int year = Integer.parseInt(scanner.nextLine());
+                System.out.print("Mileage:");
+                int mileage = Integer.parseInt(scanner.nextLine());
+                return new Car(make, model, color, year, mileage);
+            } catch (Exception e) {
+                System.out.println("Error adding car: " + e.getMessage());
+                return null;
+            }
+        }
+
+        // remove function
+        public static String removeCar(ArrayList<Car> inventory, String make, String model, String color, int year) {
+            try {
+                for (int i = 0; i < inventory.size(); i++) {
+                    Car c = inventory.get(i);
+                    if (c.make.equals(make) && c.model.equals(model)
+                            && c.color.equals(color) && c.year == year) {
+                        inventory.remove(i);
+                        return "Car removed successfully.";
+                    }
+                }
+                return "No matching car found.";
+            } catch (Exception e) {
+                return "Error removing car: " + e.getMessage();
+            }
+        }
+
+        // list a cars info function
+        public String[] listCar() {
+            try {
+                return new String[]{
+                    "Make:" + make,
+                    "Model:" + model,
+                    "Color:" + color,
+                    "Year:" + year,
+                    "Mileage:" + mileage
+                };
+            } catch (Exception e) {
+                return new String[]{"Error listing car:" + e.getMessage()};
+            }
+        }
+
+        // list all cars
+        public static String listAll(ArrayList<Car> inventory) {
+            try {
+                if (inventory.isEmpty()) {
+                    return "Inventory is empty.";
+                }
+                for (int i = 0; i < inventory.size(); i++) {
+                    System.out.println("Car #" + (i + 1));
+                    for (String info : inventory.get(i).listCar()) {
+                        System.out.println("  " + info);
+                    }
+                    System.out.println();
+                }
+                return inventory.size() + " car(s) in inventory.";
+            } catch (Exception e) {
+                return "Error listing inventory:" + e.getMessage();
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        try {
+            Scanner scanner = new Scanner(System.in);
+            ArrayList<Car> inventory = new ArrayList<>();
+            boolean running = true;
+
+            System.out.println("Car Dealership Inventory");
+            System.out.println();
+
+            while (running) {
+                System.out.println("1. Add a car");
+                System.out.println("2. Remove a car");
+                System.out.println("3. List all");
+                System.out.println("4. Quit");
+                System.out.print("Choose an option:");
+                String choice = scanner.nextLine();
+                System.out.println();
+
+                switch (choice) {
+                    case "1":
+                        Car car = Car.addCar(scanner);
+                        if (car != null) {
+                            inventory.add(car);
+                            System.out.println("Car added!");
+                        }
+                        break;
+                    case "2":
+                        System.out.print("Make: ");
+                        String make = scanner.nextLine();
+                        System.out.print("Model:");
+                        String model = scanner.nextLine();
+                        System.out.print("Color:");
+                        String color = scanner.nextLine();
+                        System.out.print("Year:");
+                        int year = Integer.parseInt(scanner.nextLine());
+                        System.out.println(Car.removeCar(inventory, make, model, color, year));
+                        break;
+                    case "3":
+                        System.out.println(Car.listAll(inventory));
+                        break;
+                    case "4":
+                        running = false;
+                        System.out.println("Goodbye!");
+                        break;
+                    default:
+                        System.out.println("Invalid option.");
+                }
+                System.out.println();
+            }
+            scanner.close();
+        } catch (Exception e) {
+            System.out.println("Error:" + e.getMessage());
+        }
     }
 }
