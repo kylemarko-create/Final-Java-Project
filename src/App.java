@@ -1,3 +1,5 @@
+// To further strengthen your work, you might consider refining input validation (such as handling invalid numeric input more specifically) and using case-insensitive comparisons when matching vehicle data. You could also enhance the design by separating responsibilities further (e.g., moving inventory management outside of the Car class) to better align with object-oriented best practices.
+
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -21,22 +23,29 @@ public class App {
         }
         // add a car from console input
         public static Car addCar(Scanner scanner) {
+            System.out.print("Make:");
+            String make = scanner.nextLine();
+            System.out.print("Model:");
+            String model = scanner.nextLine();
+            System.out.print("Color:");
+            String color = scanner.nextLine();
+            System.out.print("Year:");
+            int year;
             try {
-                System.out.print("Make:");
-                String make = scanner.nextLine();
-                System.out.print("Model:");
-                String model = scanner.nextLine();
-                System.out.print("Color:");
-                String color = scanner.nextLine();
-                System.out.print("Year:");
-                int year = Integer.parseInt(scanner.nextLine());
-                System.out.print("Mileage:");
-                int mileage = Integer.parseInt(scanner.nextLine());
-                return new Car(make, model, color, year, mileage);
-            } catch (Exception e) {
-                System.out.println("Error adding car: " + e.getMessage());
+                year = Integer.parseInt(scanner.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid year. Must be a number.");
                 return null;
             }
+            System.out.print("Mileage:");
+            int mileage;
+            try {
+                mileage = Integer.parseInt(scanner.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid mileage. Must be a number.");
+                return null;
+            }
+            return new Car(make, model, color, year, mileage);
         }
 
         // remove function
@@ -44,8 +53,8 @@ public class App {
             try {
                 for (int i = 0; i < inventory.size(); i++) {
                     Car c = inventory.get(i);
-                    if (c.make.equals(make) && c.model.equals(model)
-                            && c.color.equals(color) && c.year == year) {
+                    if (c.make.equalsIgnoreCase(make) && c.model.equalsIgnoreCase(model)
+                            && c.color.equalsIgnoreCase(color) && c.year == year) {
                         inventory.remove(i);
                         return "Car removed successfully.";
                     }
@@ -125,7 +134,13 @@ public class App {
                         System.out.print("Color:");
                         String color = scanner.nextLine();
                         System.out.print("Year:");
-                        int year = Integer.parseInt(scanner.nextLine());
+                        int year;
+                        try {
+                            year = Integer.parseInt(scanner.nextLine());
+                        } catch (NumberFormatException e) {
+                            System.out.println("Invalid year. Must be a number.");
+                            break;
+                        }
                         System.out.println(Car.removeCar(inventory, make, model, color, year));
                         break;
                     case "3":
